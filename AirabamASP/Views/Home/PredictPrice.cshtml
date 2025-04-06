@@ -1,0 +1,230 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Car
+
+<div class="container p-5">
+    <div class="row text-center">
+        <h1 class="display-5">See what AIrabam has for you!</h1>
+        <img style="width:70px; margin:auto;" src="~/icons/icons8-hover-car.gif"/>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <form class="mt-5" method="POST" id="postOfCar" asp-controller="Home" asp-action="PredictPrice">
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-calendar-50.png"/>
+                        <label>Year</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Year" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-brand-64.png"/>
+                        <label>Brand</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Brand" list="exampleList" class="form-control">
+                        <datalist id="exampleList">
+                        @foreach(var itm in ViewBag.Brands)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                        @*//<input asp-for="@Model.Brand" class="form-control">*@
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-ford-model-t-64.png"/>
+                        <label>Model</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Model"  list="exampleListModels" class="form-control">
+                        <datalist id="exampleListModels">
+                        @foreach(var itm in ViewBag.Models)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-fuel-60.png"/>
+                        <label>Fuel Type</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.FuelType" list="exampleListFuelType" class="form-control">
+                        <datalist id="exampleListFuelType">
+                        @foreach(var itm in ViewBag.FuelTypes)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-gear-64.png"/>
+                        <label>Gear</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Gear" list="exampleListGear" class="form-control">
+                        <datalist id="exampleListGear">
+                        @foreach(var itm in ViewBag.Gears)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-meter-64.png"/>
+                        <label>Milage</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Milage" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-engine-64 (1).png"/>
+                        <label>Engine Power</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.EnginePow" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-engine-64.png"/>
+                        <label>Engine Volume</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.EngineVol" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-painting-palette-64.png"/>
+                        <label>Color</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Color" list="exampleListColors" class="form-control">
+                        <datalist id="exampleListColors">
+                        @foreach(var itm in ViewBag.Colors)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-convertible.gif"/>
+                        <label>Case</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.Case"  list="exampleListCases" class="form-control">
+                        <datalist id="exampleListCases">
+                        @foreach(var itm in ViewBag.Cases)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-gas-pump-64.png"/>
+                        <label>Average Fuel Consumption</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.AvgFuelCons" class="form-control">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6 align-self-center">
+                        <img class="icon_for_input" src="~/icons/icons8-map-marker-50.png"/>
+                        <label>City</label> 
+                    </div>
+                    <div class="col-md-6 align-self-center">
+                        <input asp-for="@Model.City" list="exampleListCities" class="form-control">
+                        <datalist id="exampleListCities">
+                        @foreach(var itm in ViewBag.Cities)
+                        {
+                            <option value="@itm"/>  
+                        } 
+                        </datalist>
+                    </div>
+                </div>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <hr />
+                <div class="row m-4 mt-5">
+                        <button id="postSbmtBtn" class="btn btn-primary text-center mx-auto" type="submit">PREDICT</button>   
+                </div>      
+                <div class="row my-5">
+                @if (ViewBag.Price != null)
+                {
+                    <div class="col-md-10 align-self-center text-center rounded bg-warning mx-auto p-3 hidden" style="border-radius:15px !important; display: none;">
+                        <h3 class="display-3 text-center">We predict the price to be:</h3>
+                        <h4 class="display-4 text-center">@ViewBag.Price ₺</h4>
+                    </div>    
+                }
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+<span style="display:none;" id ="errorId">@ViewBag.Error</span>
+<span style="display:none;" id ="priceId">@ViewBag.Price</span>
+
+
+@section Scripts {
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        
+
+        $("#postSbmtBtn").click(function() {
+            Swal.showLoading()
+        });
+
+
+        var error = "";
+        var price = "";
+        
+        error = $("#errorId").html();
+        price = $("#priceId").html();
+
+
+
+        if(error === "Error Var"){
+            Swal.fire({
+              title: 'Error!',
+              text: 'Please check the values you entered.',
+              icon: 'error',
+              confirmButtonText: 'Cool'
+            })
+        }
+
+        if(price !== ""){
+            Swal.fire(
+              'AIrabam predicts a fair price would be...',
+              price + ' ₺',
+              'success'
+            )
+        }
+
+        
+    </script>
+
+}

@@ -1,0 +1,125 @@
+﻿@model Dictionary<string,List<FeatureValueAverage>>
+
+
+<div class="container px-5">
+    <h4>What features are favoured by people according to AIrabam?</h4>
+    @foreach(var item in Model)
+    {
+        <div class="container p-5">
+            <h4 class="p-3 mb-3">@item.Key.ToString()</h4> 
+            <table class="table table-dark">
+                <thead>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                </thead>
+                  <tbody>
+                    @for(int i =1; i<= item.Value.Count; i++)
+                    {
+                        <tr>
+                          <th scope="row">@i</th>
+                          <td>@item.Value[i-1].Value</td>
+                        </tr>
+                    }           
+                  </tbody>
+            </table>
+        </div> 
+    }
+
+    <div class="container px-5">
+       <h4 class="p-3 mb-3">Impact of Average Fuel Consumtion on the Price</h4> 
+       <canvas id="myChart5"></canvas>
+       <p class="p-3">As expected as the average fuel consumption increase, cars become less and less appealing.
+       </p>
+   </div> 
+
+   <div class="container px-5">
+       <h4 class="p-3 mb-3">Impact of Car Case on the Price</h4> 
+       <canvas id="myChart0"></canvas>
+       <p class="p-3">AIrabam suggests that a Coupe, SUV and Roadster are sold at higher prices when compared to more common case types like Hatchback, Sedan and Station-Wagon.
+           This is not very surprising as vehicles like SUVs are considered a little bit more on the luxurious side of the vehicles. They also typically consume more fuel and the owner needs to pay more taxes.
+       </p>
+   </div> 
+  <div class="container px-5">
+       <h4 class="p-3 mb-3">Impact of Car Color on the Price</h4> 
+       <canvas id="myChart1"></canvas>
+       <p class="p-3">
+           AIrabam suggests that people value a car with colors of turquoise, brown, yellow, red and green more while they don't do the same for cars that are black, pink, gray or golden.   
+       </p>
+   </div> 
+   <div class="container px-5">
+       <h4 class="p-3 mb-3">Impact of Car Gear Type on the Price</h4> 
+       <canvas id="myChart2"></canvas>
+       <p class="p-3">
+           This is easily the most predictable result we have on this page. AIrabam suggests that manual cars are less valued by people of Turkey, and they would prefer to get an automatic or a semi-automatic car.
+       </p>
+   </div> 
+   <div class="container px-5">
+       <h4 class="p-3 mb-3">Impact of City on the Price</h4> 
+       <canvas id="myChart3"></canvas>
+       <p class="p-3">
+           This is easily the most surprising result we have from this research. Since big cities like İstanbul, Ankara, Adana generally have a higher cost of living, it is very intuitive to think that the car prices would also be higher. But on the contrary since there are a lot more car galleries, and dealerships in these cities it seems like it effects the car price in an unexpected way. The prices are lower in these cities. On the contrary in smaller cities like Kars, Yozgat and Tunceli due to not having many competition over selling cars it seems like the sellers usually go for a higher price.
+       </p>
+   </div> 
+    <div class="container px-5">
+        <h4 class="p-3 mb-3">Impact of Fuel Type on the Price</h4> 
+       <canvas id="myChart4"></canvas>
+       <p class="p-3">
+           Even though they are bad for the environment diesel cars in fact do cost less to their owner and as you can see it is reflected in the graph as well. One surprising bit from this graph was how little the price got effected when the fuel type is LPG. I would have expected a big drop. This is actually very telling example of how broken the market in Turkey is due to the current inflation and devaluation of the currency. Another surprising bit is that there seems to be a bias against hybrid cars in Turkey, while market holds electrical cars at a high place. 
+       </p>
+   </div> 
+</div>
+
+
+
+
+@section Scripts {
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script type="text/javascript">
+      $.ajax({
+          type: "POST",
+          url: "/Home/GetDataForGraph",
+          data:"",
+          contextType:"application/json; charset=utf-8",
+          dataType:"json",
+          success:OnSuccessResult,
+          error: OnError
+      });
+
+      function OnSuccessResult (data){
+          
+          for (let i = 0; i < data.length; i++) {
+
+              var _data = data[i];
+              var _chartLabels = _data[0];
+              var _chartData = _data[1];
+
+              new Chart("myChart"+i, 
+              {
+                type:"bar",
+                data:{
+                    labels: _chartLabels,
+                    datasets: [{
+                        label: "impact of price (in ₺)",
+                        data:_chartData
+                    }]
+                },
+                options:{
+                    legend:{
+                        text:"impact of price (in ₺)"
+                    }
+                }
+              });
+          }
+
+          
+      }
+
+      function OnError(err){
+
+      }
+
+    </script>
+
+}

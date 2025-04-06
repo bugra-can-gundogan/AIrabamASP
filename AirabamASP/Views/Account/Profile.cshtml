@@ -1,0 +1,16 @@
+@model System.Collections.Generic.Dictionary<string, string>
+
+<div class="container text-center p-5">
+    <div class="row">
+        <a class="btn btn-outline-info py-5 my-2 px-5" asp-controller="Account" asp-action="Scrape">Scrape</a>
+        <a class="btn btn-outline-info py-5 my-2 px-5" asp-controller="Account" asp-action="ScrapeTest">Scrape For Test</a>
+        <a class="btn btn-outline-warning py-5 my-2 px-5" asp-controller="Account" asp-action="ScrapeDetails">Scrape Details</a>
+        <a class="btn btn-outline-warning py-5 my-2 px-5" asp-controller="Account" asp-action="ScrapeDetailsTest">Scrape Details For Test</a>
+        <a class="btn btn-outline-info py-5 my-2" asp-controller="Account" asp-action="FixModelNames">Fix Model Names</a>
+        <a class="btn btn-outline-danger py-5 my-2" asp-controller="Account" asp-action="TrainPrice">Train Price Model</a>       
+        <a class="btn btn-outline-primary py-5 my-2" asp-controller="Account" asp-action="EvaluatePrice">Evaluate Model</a>
+        <a class="btn btn-outline-primary py-5 my-2" asp-controller="Account" asp-action="EvaluateBuiltIn">Evaluate Model - Built in</a>
+        <a class="btn btn-outline-info py-5 my-2" asp-controller="Account" asp-action="EvaluateFeatures">Evaluate Features</a>
+        <a class="btn btn-outline-danger py-5 my-2" asp-controller="Account" asp-action="CrossValidation">Cross Validation</a>  
+    </div>
+</div>
